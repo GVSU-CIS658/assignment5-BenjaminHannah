@@ -33,7 +33,46 @@ export const useBeverageStore = defineStore("BeverageStore", {
   }),
 
   actions: {
-    init() {},
+    init() {
+      onSnapshot(collection(db, "bases"), (snapshot) => {
+        this.bases = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            name: data.name,
+            color: data.color,
+          };
+        });
+        if (!this.currentBase && this.bases.length > 0) {
+        this.currentBase = this.bases[0];
+        }
+      });
+
+      onSnapshot(collection(db, "creamers"), (snapshot) => {
+        this.creamers = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            name: data.name,
+            color: data.color,
+          };
+        });
+        this.currentCreamer = this.creamers[0];
+      });
+
+      onSnapshot(collection(db, "syrups"), (snapshot) => {
+        this.syrups = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            name: data.name,
+            color: data.color,
+          };
+        });
+        this.currentSyrup = this.syrups[0];
+      });
+    },
+    
     makeBeverage() {},
 
     showBeverage() {},
