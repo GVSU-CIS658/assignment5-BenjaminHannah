@@ -9,11 +9,11 @@ import tempretures from "../data/tempretures.json";
 import db from "../firebase.ts";
 import {
   collection,
-  getDocs,
+  //getDocs,
   setDoc,
   doc,
-  QuerySnapshot,
-  QueryDocumentSnapshot,
+  //QuerySnapshot,
+  //QueryDocumentSnapshot,
   onSnapshot,
   query,
   where,
